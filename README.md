@@ -1,4 +1,4 @@
-﻿weiboCleaner
+﻿weiboCleaner Chrome扩展
 ============
 
 清理新浪微博中的广告、推荐等
