@@ -1,0 +1,20 @@
+{
+    "version": "0.0",
+    "manifest_version": 2,
+    "name": "weiboCleaner",
+    "content_scripts": [{
+        "js" : [ "main.js" ],
+        "matches" : [
+            "http://weibo.com/*",
+            "http://*.weibo.com/*"
+        ],
+        "run_at" : "document_end"
+    }],
+    "icons": {
+        "128": "./images/icon.png"
+    },
+    "browser_action": {
+        "default_icon": "./images/icon.png",
+        "default_title": "WeiboCleaner"
+    }
+}
