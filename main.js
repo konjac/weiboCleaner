@@ -1,3 +1,4 @@
+﻿
 var is_home = false;
 
 var get_config = function (){
@@ -43,6 +44,21 @@ var unfold_group = function(){
     if(more_list){
         console.log("unfold more group list");
         more_list.style.display = "";
+    }/*
+    var more_group = document.querySelector('a[suda-data="key=tblog_home_new&value=leftgroup_unfold"]');
+    if(more_group.innerText == "展开"){
+        more_group.click();
+        console.log("unfold more group list");
+    }*/
+}
+
+var hide_feed_merge_lists = function(){
+    var divs = document.querySelectorAll("div[node-type=feed_merge_lists]")
+    if(divs && divs.length){
+        for(var i = 0; i < divs.length; ++i){
+            divs[i].remove();
+        }
+        console.log("hide all feed_merge_lists");
     }
 }
 
@@ -55,6 +71,15 @@ var hide_feed_ads = function(){
             ads[i].remove();
             console.log("hide ads in feedlist");
         }
+    }
+}
+
+var hide_feed_list_recommend =  function(){
+    var feed_list_recommend = document.querySelectorAll('div[node-type="feed_list_recommend"]')
+    if(feed_list_recommend && feed_list_recommend.length){
+        for(var i = 0; i < feed_list_recommend.length;++i)
+            feed_list_recommend[i].remove();
+        console.log("hide feed list recommend");
     }
 }
 
@@ -127,6 +152,7 @@ var hide_vip_recom = function(){
 }
 
 var main = function(mutation) {
+    console.log("begin to clean...\n");
     console.log(is_home);
     console.log(mutation.type);
     delete_popular_buss();
@@ -140,16 +166,20 @@ var main = function(mutation) {
     hide_vip_recom();
     hide_recommend_topic();
     hide_feed_ads();
+    hide_feed_merge_lists();
+    hide_feed_list_recommend();
 }
 
 var observer = new MutationObserver(function(mutations) {
+    console.log("call back...\n");
     mutations.forEach(main);    
 });
 
 var config = {
     attributes: true,
     childList: true,
-    characterData: true
+    characterData: true,
+    subtree: true
 };
 
 /*if(is_home)*/{
